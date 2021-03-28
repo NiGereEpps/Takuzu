@@ -5,7 +5,7 @@ Made using Elm.
 ## Options for Playing: 
 Option 1: 
 
-Visit [nigereepps.github.io/takuzu](nigereepps.github.io/takuzu)
+Visit [nigereepps.github.io/takuzu](https://nigereepps.me/Takuzu/)
 
 Option 2:
 
