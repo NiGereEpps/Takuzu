@@ -1,0 +1,18 @@
+Model Representation:
+This project's model stores the current board state, starting board state (to allow for resetting to the start), and the windowSize (to center the board as discussed below)
+
+Click and Point based interactions:
+This project has the ability to get and set array index based on where the user clicks on the page / grid using the Point type and click Decoder in Elm. It works for different screen sizes as well. 
+
+Compatible with different screen sizes: 
+This project uses Tasks with Browser.Dom.getViewport and Batch Subscriptions (Browser.Events.onResize) to get the size of the screen on load and whenever the user's window is resized in order to center the board within the window. 
+
+Solution / Validity Checker:
+Rather than checking the current board against a predetermined solution, this implementation first checks if the board has all squares colored (is full), and then checks that every rule is satisfied. It starts with the rules that take the least computations / returns False the quickest in order to maximize efficiency when checking.
+
+Pre-generated and random generated boards:
+In the code, one can choose either a 4x4 or 6x6 (sample) board to start with (default is set to 4). Then choosing a new game randomly generates a new board to start with (which is also checked for validity). This is done by generating a random list of numbers representing red or blue tiles. The board generator adds each tile to a blank board one by one and checks for validity (ie no triples). If the board is no longer valid, it switches the color of the tile and moves to the next. This is done until the board is full and then checks one more time to ensure this solution follows all of the rules (ie no duplicate rows). If it doesn't, it regenerates the random list and tries again. After a valid solution board is generated, a list of tiles to be revealed is generated and randomly chooses tiles to be shown at the start of the game (ie 30% chance that a solution tile is revealed at the start). 
+
+
+Reflections:
+One thing that differs in my implementation of Takuzu that's different than standard online versions is the random game generator. Currently the starting tiles are randomly selected from a valid solution. However, in some of the online versions I've played (as shown in the sample 4x4 and sample 6x6), the starting tiles are revealed in a way that the user can complete the entire puzzle logically (ie using the rules to fill in the next tile). Due to the randomness of my implementation, there could be multiple solutions (ie if there are only 3 tiles revealed) or it could take multiple attempts, adding more of a challenge to the puzzle and making the Reset button more useful. I tried to implement the traditional way of generating boards (though not sure if it's random) by randomly generating two actionable tiles (ie two of the same color next to each other) multiple times and adding another random tile but ran into issues with creating invalid boards or still having to "guess". This implementation is commented out in the code but can be viewed in the block starting on line 213.
