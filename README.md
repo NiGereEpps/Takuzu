@@ -2,6 +2,8 @@
 Takuzu (Binary Sudoku) web app with random generated games
 Made using Elm. 
 
+![](img/favicon.png)
+
 ## Options for Playing: 
 Option 1: 
 
